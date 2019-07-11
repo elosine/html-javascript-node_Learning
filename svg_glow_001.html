@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>We b SVGn</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <style>
+    * {
+      font-family: 'Lato';
+    }
+  </style>
+
+
+</head>
+
+
+<body>
+
+  <h1> SVG Time, Ya know what I'm sayin</h1>
+
+  <svg width="500" height="500" style="background-color:black">
+  <defs>
+    <filter id='f1' x='0' y='0'>
+      <feGaussianBlur in='SourceGraphic' stdDeviation='2' />
+    </filter>
+  </defs>
+
+  <line x1='50' y1='200' x2='400' y2='400' stroke='rgb(153,255,0)' stroke-width='4' filter='url(#f1)' />
+
+  <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
+
+  <rect x='100' y='50' rx='20' ry='20' width='200' height='50' style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
+</svg>
+
+
+    <svg width='400' height='400' style="background-color:black; position:absolute; top:150px; left:550px">
+      <defs>
+        <!-- Filter: red-glow -->
+        <filter id="red-glow" filterUnits="userSpaceOnUse" x="-50%" y="-50%" width="200%" height="200%">
+          <!-- blur the text at different levels-->
+          <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur5" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur10" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="blur20" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blur30" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="50" result="blur50" />
+          <!-- merge all the blurs except for the first one -->
+          <feMerge result="blur-merged">
+            <feMergeNode in="blur10" />
+            <feMergeNode in="blur20" />
+            <feMergeNode in="blur30" />
+            <feMergeNode in="blur50" />
+          </feMerge>
+          <!-- recolour the merged blurs red-->
+          <feColorMatrix result="red-blur" in="blur-merged" type="matrix" values="1 0 0 0 0
+                             0 0.06 0 0 0
+                             0 0 0.44 0 0
+                             0 0 0 1 0" />
+          <feMerge>
+            <feMergeNode in="red-blur" /> <!-- largest blurs coloured red -->
+            <feMergeNode in="blur5" /> <!-- smallest blur left white -->
+            <feMergeNode in="SourceGraphic" /> <!-- original white text -->
+          </feMerge>
+        </filter>
+
+        <!-- Filter: neongreen -->
+        <filter id="neongreen" filterUnits="userSpaceOnUse" x="-50%" y="-50%" width="200%" height="200%">
+          <!-- blur the text at different levels-->
+          <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur5" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur10" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="blur20" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blur30" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="50" result="blur50" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="60" result="blur60" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="70" result="blur70" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="80" result="blur80" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="90" result="blur90" />
+          <!-- merge all the blurs except for the first one -->
+          <feMerge result="blur-merged">
+            <feMergeNode in="blur10" />
+            <feMergeNode in="blur20" />
+            <feMergeNode in="blur30" />
+            <feMergeNode in="blur50" />
+            <feMergeNode in="blur60" />
+            <feMergeNode in="blur70" />
+            <feMergeNode in="blur80" />
+            <feMergeNode in="blur90" />
+          </feMerge>
+          <!-- recolour the merged blurs red-->
+          <feColorMatrix result="limegreen-blur" in="blur-merged" type="matrix"
+          values="
+                             0.6 0 0 0 0
+                             0 1 0 0 0
+                             0 0 0 0 0
+                             0 0 0 1 0" />
+          <feMerge>
+            <feMergeNode in="limegreen-blur" /> <!-- largest blurs coloured red -->
+            <feMergeNode in="blur5" /> <!-- smallest blur left white -->
+            <feMergeNode in="SourceGraphic" /> <!-- original white text -->
+          </feMerge>
+        </filter>
+
+      </defs>
+
+      <text style="font-family:Helvetica, Arial, sansserif; font-size:100px; font-weight:900;
+      fill:white; filter: url(#red-glow)" x="150" y="100" text-anchor="middle">RED</text>
+
+      <line x1='50' y1='200' x2='100' y2='350' stroke='rgba(153,255,0,1)' stroke-width='7' filter='url(#neongreen)' />
+
+    </svg>
+
+</body>
+
+</html>
